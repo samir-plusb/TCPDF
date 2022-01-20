@@ -2970,7 +2970,7 @@ class TCPDF {
 
 	/**
 	 * Whether to allow local file path in image html tags, when prefixed with file://
-	 * 
+	 *
 	 * @param bool $allowLocalFiles true, when local files should be allowed. Otherwise false.
 	 * @public
 	 * @since 6.4
@@ -7218,7 +7218,11 @@ class TCPDF {
 		} elseif ($palign == 'R') {
 			$ximg = $this->w - $this->rMargin - $w;
 		} else {
-			$ximg = $x;
+            if ($this->rtl) {
+                $ximg = $x - $w;
+            } else {
+                $ximg = $x;
+            }
 		}
 
 		if ($ismask OR $hidden) {
